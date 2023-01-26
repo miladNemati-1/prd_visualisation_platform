@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+
+
+
+
+{% block content %}
+
+
+{% autoescape off %}
+    {{ plot_3d_graph }}
+
+{% endautoescape %}
+
+
+
+<form id="form" method="post" class="form-inline " action="{% url 'view_3d_monomer_graph' name%}">
+  <div class="row d-flex-justify-centre">
+    <div class="col-md-2">               
+      <label for="floatingInput">Choose X axis</label>
+      <select class="btn btn-secondary dropdown-toggle centre" name="choose_x" id="choose_x_id">
+          {% for option in axis %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+      </select>
+      {% include "xinput_accordion.html" %}
+      <!-- <input class = 'form-control' type="text" id="formula-left-input" placeholder="Modify axis using x" name="x-input"> -->
+    </div>
+    <div class="col-md-2">
+      <label >Choose Y axis</label>
+      <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_y" id="choose_y_id">
+          {% for option in axis %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+          
+      </select>
+      {% include "yinput_accordion.html" %}
+      <!-- <input class = 'form-control'type="text" id="formula-left-input" placeholder="Modify axis using x" name="y-input"> -->
+    </div>
+    <div class="col-md-2 d-flex-justify-centre">
+      <label >Choose Z axis</label>
+      <div class="input-group">
+          <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_z" id="choose_z_id">
+              {% for option in axis %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+          </select>
+          {% include "zinput_accordion.html" %}
+          <!-- <input class = 'form-control' type="text" id="formula-left-input" placeholder="Modify axis using x" name="z-input"> -->
+        <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+
+      </div>
+      
+
+    </div>
+    <div class="col-md-2 row">
+      <button class="btn btn-primary" type="submit">Change Axis</button>
+    </div>
+   
+  </div>
+</form>
+<div>
+<p></p>
+
+
+
+{% endblock content %}

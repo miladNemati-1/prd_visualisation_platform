@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+
+
+
+<form id="form" method="post" class="form-inline " action="{% url 'all_visualisations'%}">
+    <div class="row d-flex-justify-centre">
+      <div class="col-md-2">               
+        <label for="floatingInput">Choose X axis</label>
+        <select class="btn btn-secondary dropdown-toggle centre" name="choose_x" id="choose_x_id " style="font-size:13px;">
+            {% for option in column_names %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+        </select>
+        {% include "xinput_accordion.html" %}
+        <!-- <input class = 'form-control' type="text" id="formula-left-input" placeholder="Modify axis using x" name="x-input"> -->
+      </div>
+      <div class="col-md-2">
+        <label >Choose Y axis</label>
+        <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_y" id="choose_y_id " style="font-size:13px;">
+            {% for option in column_names %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+            
+        </select>
+        {% include "yinput_accordion.html" %}
+        <!-- <input class = 'form-control'type="text" id="formula-left-input" placeholder="Modify axis using x" name="y-input"> -->
+      </div>
+      <div class="col-md-2 d-flex-justify-centre">
+        <label >Choose Z axis</label>
+        <div class="input-group">
+            <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_z" id="choose_z_id" style="font-size:13px;">
+                {% for option in column_names %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+            </select>
+            {% include "zinput_accordion.html" %}
+            <!-- <input class = 'form-control' type="text" id="formula-left-input" placeholder="Modify axis using x" name="z-input"> -->
+          <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+        </div>
+
+      </div>
+      <div class="col-md-2 d-flex-justify-centre">
+        <label >Choose Marker axis</label>
+        <div class="input-group">
+            <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_marker" id="choose_z_id" style="font-size:13px;">
+                {% for option in column_names %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+            </select>
+          <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+        </div>
+
+      </div>
+      <div class="col-md-2 d-flex-justify-centre">
+        <label >Choose Colour</label>
+        <div class="input-group">
+            <select class="btn btn-secondary dropdown-toggle justify-right" name="choose_colour" id="choose_z_id" style="font-size:13px;">
+                {% for option in column_names %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+            </select>
+          <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+        </div>
+
+      </div>
+      <div class="col-md-2 row">
+        <button class="btn btn-primary" type="submit">Change Axis</button>
+      </div>
+
+      </div>
+      <!-- {% include "accordion.html" %} -->
+
+
+
+    </div>
+  </form>
+<div>
+<p></p>
+
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">3D view</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2D rate view</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    {% autoescape off %}
+    {{ plot_3d_graph }}
+{% endautoescape %}
+</div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
