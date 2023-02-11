@@ -19,7 +19,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.tree import DecisionTreeRegressor
 import plotly.graph_objects as go
-from summit.domain import *
 from sklearn.ensemble import AdaBoostRegressor
 
 
@@ -91,10 +90,11 @@ def determine_rate_of_data_subset(data_subset):
     res_time_floats = [float(x) for x in data_subset['res_time']]
 
     fit = stats.linregress(
-        results_floats, res_time_floats)
+        res_time_floats, results_floats)
+    print(fit)
     k = fit[0]
-    data_subset.to_csv("/Users/miladnemati/Desktop/subsetforR.csv")
-    if fit[2]**2 < 0.4:
+    print(data_subset["res_time"])
+    if fit[2]**2 < 0.75:
         return np.nan
 
     return abs(k)
@@ -209,16 +209,24 @@ def take_average_of_items_in_list(list):
 
 def create_descision_tree_from_df(df: pandas.DataFrame):
     df.dropna(inplace=True)
+    print("df")
+    print(df)
     X = df.iloc[:, :-1].values
     Y = df.iloc[:, -1].values.reshape(-1, 1)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=.2)
-    regressor = DecisionTreeRegressor()
+    regressor = AdaBoostRegressor(DecisionTreeRegressor())
 
     kinetics_model = regressor.fit(X_train, Y_train)
 
     Y_pred = kinetics_model.predict(X_test)
+    Y_test = np.ndarray.flatten(Y_test)
+    print(Y_test)
+    print(Y_pred)
+    r_square = np.corrcoef(Y_test, Y_pred)[0, 1]
+    print("r_square")
+    print(r_square**2)
 
     error_tree_meansquared = np.sqrt(mean_squared_error(Y_test, Y_pred))
 
@@ -240,6 +248,12 @@ def monomer_models(request):
 
     df_experiments_cta_join.to_csv(
         "/Users/miladnemati/Desktop/ALL_RATE_DATAAAA.csv")
+
+    data_target = df_experiments_cta_join[(df_experiments_cta_join["monomer_name"] == 'BA') & (
+        df_experiments_cta_join["cta_name"] == "Carbon Tetrabromide")]
+
+    print("data_target")
+    print(data_target)
 
     data_target = df_experiments_cta_join[[
         'temperature', 'cta_concentration', 'rate', ]]
