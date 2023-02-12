@@ -15,6 +15,8 @@ from django.utils import timezone
 import pymysql
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # dsfdfd
 now = timezone.now()
@@ -95,12 +97,12 @@ WSGI_APPLICATION = 'momoda.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chemistry',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': os.getenv("ENGINE"),
+        'NAME': os.getenv("NAME"),
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"),
+        'PORT': os.getenv("PORT"),
 
     }}
 
