@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+
+<form id="form" method="post" class="form-inline " action="{% url 'view_3d_kinetic_graph' name%}">
+    <div class="row d-flex-justify-centre">
+      <div class="col-md-2">               
+        <label for="floatingInput">Choose CTA</label>
+        <select class="btn btn-secondary dropdown-toggle centre" name="CTA" id="CTA_id">
+            {% for option in CTA_list %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label >Choose temperature </label>
+        <select class="btn btn-secondary dropdown-toggle justify-right" name="temperature" id="temperature_id">
+            {% for option in temperature_list %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-flex-justify-centre">
+        <label >Choose cta_concentration</label>
+        <div class="input-group">
+            <select class="btn btn-secondary dropdown-toggle justify-right" name="cta_concentration" id="cta_concentration_id">
+                {% for option in cta_concentration %}<option value='{{option}}' > {{option}} {% endfor %}</option>
+            </select>
+          <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+        </div>
+
+      </div>
+      <div class="col-md-2 d-flex-justify-centre">
+        <label >Choose n-th order</label>
+        <div class="input-group">
+            <select class="btn btn-secondary dropdown-toggle justify-right" name="order" id="order_id">
+                {% for option in reaction_orders %}<option value='{{option}}'> {{option}} {% endfor %}</option>
+            </select>
+          <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+        </div>
+
+      </div>
+
+      <div class="col-md-2 row">
+        <button class="btn btn-primary" type="submit">Get rate constant</button>
+      </div>
+    </div>
+  </form>
+<div>
+<p></p>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">3D view</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2D view</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    {% autoescape off %}
+    {{ plot_3d_graph }}
+{% endautoescape %}
+<div class="card text-center">
+  <div class="card-header">
+    Kinetic Information
+  </div>
+  <div class="card-body">
+    <!-- <h5 class="card-title">Special title treatment</h5> -->
+    <p class="card-text">k = {{k}}</p>
+  </div>
+</div>
+</div>
+</div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    {% autoescape off %}
+    {{ plot_2d_graph }}
+{% endautoescape %}
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}

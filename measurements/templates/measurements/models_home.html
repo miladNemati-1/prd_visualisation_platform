@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+
+<form id="form" method="post" class="form-inline " action="{% url 'monomer_models' %}"">
+      <div class="container">
+        <div><p></p></div><h3 class="text-center">Your Next Reaction's Details</h3>
+        <div class="row">
+          <div class="col">
+            <label for="temperature_label"></label>
+            <input type="number" step="0.001" name = "r_temp" placeholder="Enter Temperature (Degrees Celsius)" class="form-control" id="temperature_input_id" required>
+        </div>
+          <div class="col">
+            <label for="cxratio_label"></label>
+            <input type="number" step="0.001" name = "r_cx_cm" placeholder="Enter cx/cm ratio" class="form-control" id="cx_ratio_id" required>
+          </div>
+        </div>
+        
+      </div>
+
+        </div>
+
+
+      </div>
+      <div class="card text-center">
+        <p></p>
+        <div class="col"><button class="btn btn-primary" type="submit">Get Predicted rate</button> 
+        <p></p>
+
+
+        </div>
+        
+      </div>
+      <div class="col" ></div>
+      <div class="col">
+      <div class="card text-center">
+        <div class="card-header">
+          Kinetic Information
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+
+          <p class="card-text">Predicted Rate = {{predicted_k}}</p>
+          <p class="card-text">Mean Squared Error= {{squared_error}}</p>
+
+        </div>
+        
+      </div>
+      </div>
+    </div>
+</div>
+</form>
+
+    {% endblock content %}
+
