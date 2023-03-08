@@ -93,13 +93,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'momoda.wsgi.application'
-
-
 DATABASES = {
     'default': {
         'ENGINE': os.getenv("ENGINE"),
         'NAME': os.getenv("NAME"),
-        'USER': os.getenv("USER"),
+        'USER': os.getenv("MY_USERNAME"),
         'PASSWORD': os.getenv("PASSWORD"),
         'HOST': os.getenv("HOST"),
         'PORT': os.getenv("PORT"),

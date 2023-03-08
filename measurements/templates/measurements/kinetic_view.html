@@ -51,7 +51,8 @@
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">3D view</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2D view</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2D rate view</button>
+    <button class="nav-link" id="nav-profile-tab1" data-bs-toggle="tab" data-bs-target="#nav-profile1" type="button" role="tab" aria-controls="nav-profile1" aria-selected="false">3D rate view</button>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -70,13 +71,22 @@
 </div>
 </div>
 </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    {% autoescape off %}
-    {{ plot_2d_graph }}
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  {% autoescape off %}
+  {{ plot_2d_graph }}
 {% endautoescape %}
-  
-  </div>
+
+
 </div>
+<div class="tab-pane fade" id="nav-profile1" role="tabpanel" aria-labelledby="nav-profile-tab1">
+  {% autoescape off %}
+  {{ plot_3d_rate_graph }}
+{% endautoescape %}
+
+</div>
+
+
+
 
 
 
