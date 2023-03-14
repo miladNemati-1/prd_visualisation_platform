@@ -22,7 +22,8 @@
 <!-- PROJECT LOGO -->
 
 <p align="center">
-  <img width="460" height="300" src= "![prd-400](https://user-images.githubusercontent.com/68676555/224913207-b78d0db2-302a-4038-83a2-33dd93c1299d.jpeg)">
+![prd-400](https://user-images.githubusercontent.com/68676555/224913432-f5ba5803-e8e9-40da-8011-540753530a91.jpeg)
+
 </p>
 
 
