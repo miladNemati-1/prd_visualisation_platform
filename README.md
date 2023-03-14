@@ -21,10 +21,9 @@
 
 <!-- PROJECT LOGO -->
 
-<p align="center">
 ![prd-400](https://user-images.githubusercontent.com/68676555/224913432-f5ba5803-e8e9-40da-8011-540753530a91.jpeg)
 
-</p>
+
 
 
   <h3 align="center">A Polymer Visualisation and Kinetic Modelling Software</h3>
