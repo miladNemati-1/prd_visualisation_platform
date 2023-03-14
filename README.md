@@ -89,7 +89,7 @@ The platform interacts with a large chemical database for use in data visualisat
 
 The website also dynamically creates descision trees based on data in the database and a set of parameters relating to polymerization reactions. The user can than use these models to get predictions of their next reactions. however the Error is still very high and optimization is needed for future work
 
-<img width="1266" alt="All_rate_views" src="https://user-images.githubusercontent.com/68676555/224913972-33d93507-cf2c-403e-ad58-aa67d7d8b245.png">
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
