@@ -45,8 +45,9 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+<img width="1427" alt="All_Vis_Screenshot" src="https://user-images.githubusercontent.com/68676555/224913757-7198c94f-421c-45ed-a2c2-ec940f076a91.png">
 
-![All_Vis_Screenshot.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/All_Vis_Screenshot.png?raw=true)
+
 
 This is a website for creating, visualising and modelling of polymer chemistry research data designed for the Polymer Reaction Design Group at Monash University. It is a website programmed in python using the Django web framework, that features functionalities such as chemical inventory management, data visualisation and it creates statistical and machine learning models using various algorithms for polymer research purposes.
 
@@ -72,27 +73,33 @@ Important: Original source code currently under private repository. Collaboratio
 
 ## Usage
 
-![Graph_Formula.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/Monomer_Visualisations_Homepage.png?raw=true)
+<img width="887" alt="Graph_Formula" src="https://user-images.githubusercontent.com/68676555/224913800-8805bd45-d745-43fc-8e0b-476707d02ae6.png">
+
 
 The platform interacts with a large chemical database for use in data visualisations of different systems. These visualisations can be customised by the user to generate any combination of data they require and they are able to mathematically modify these graphs.
 
-![Graph_Formula.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/Graph_Formula.png?raw=true)
 
-![Example_Kinetic_Calc.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/Example_Kinetic_Calc.png?raw=true)
+<img width="1237" alt="Example_Kinetic_Calc" src="https://user-images.githubusercontent.com/68676555/224914066-84bfc80c-0c3b-4e01-ba02-b5bf75ce57fd.png">
 
-![All_Rate_Views.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/All_rate_views.png?raw=true)
+
+
+<img width="1266" alt="All_rate_views" src="https://user-images.githubusercontent.com/68676555/224913927-5db8eeb3-b03b-4b28-a917-95ab3f279b0d.png">
+
+
 
 The website also dynamically creates descision trees based on data in the database and a set of parameters relating to polymerization reactions. The user can than use these models to get predictions of their next reactions. however the Error is still very high and optimization is needed for future work
 
-![All_Rate_Views.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/Models_Input.png?raw=true)
+<img width="1266" alt="All_rate_views" src="https://user-images.githubusercontent.com/68676555/224913972-33d93507-cf2c-403e-ad58-aa67d7d8b245.png">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 The website also features other administrative tools such as a chemical management system and online lab equipment and chemical search
+<img width="964" alt="Online_Search" src="https://user-images.githubusercontent.com/68676555/224914004-1ae2fe05-a114-4f81-ae83-a3d5a5632fee.png">
 
-![Online_Search.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/Online_Search.png?raw=true)
+<img width="912" alt="My_Lab" src="https://user-images.githubusercontent.com/68676555/224914035-5addd396-4992-4c63-bed5-3d5116232e89.png">
 
-![My_Lab.png](https://github.com/miladNemati-1/django_prd_website/blob/main/images/My_Lab.png?raw=true)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 ## License
