@@ -36,7 +36,7 @@ def get_all_rate_data():
     df_measurement_rate = df_measurement_rate.drop_duplicates()
     df_measurement_rate.replace('', np.nan, inplace=True)
     df_measurement_rate.dropna(inplace=True)
-    df_measurement_rate.to_csv("/Users/miladnemati/Desktop/All_rate_data.csv")
+    # df_measurement_rate.to_csv("/Users/miladnemati/Desktop/All_rate_data.csv")
 
     return df_measurement_rate
 
@@ -74,8 +74,8 @@ def get_all_cleaned_res_time_conversion_data():
     clean_timesweep_data(df_experiments_cta_join)
     df_experiments_cta_join.replace('', np.nan, inplace=True)
     df_experiments_cta_join.dropna(inplace=True)
-    df_experiments_cta_join.to_csv(
-        "/Users/miladnemati/Desktop/df_experiments_cta_join.csv")
+    # df_experiments_cta_join.to_csv(
+    #     "/Users/miladnemati/Desktop/df_experiments_cta_join.csv")
 
     return df_experiments_cta_join
 
@@ -149,11 +149,11 @@ def clean_timesweep_data(monomer_conversion: pandas.DataFrame):
 
 def clean_data_frame(df):
     df.rename(columns={
-        "monomer_name": "Monomer", 'cta_name': 'Chain Transfer Agent', 'res_time': 'Residence Time (min)', 'temperature': 'Temperature (C)', "result": "Conversion %"}, inplace=True)
+        "monomer_name": "Monomer", 'cta_name': 'Chain Transfer Agent', 'res_time': 'Residence Time (min)', 'temperature': 'Temperature (°C)', "result": "Conversion %"}, inplace=True)
     df = modify_axis_all_visualisations(
         df, 'Residence Time (min)', "round((float(x)/60),3)")
     df = modify_axis_all_visualisations(
-        df, 'Conversion %', "round(float(x),3)")
+        df, 'Conversion %', "round(float(x),3)*100")
 
     return df
 
@@ -190,7 +190,7 @@ def all_visualisations(request):
     three_d_graph = three_d_graph.to_html()
 
     column_names = ['cta_concentration', 'monomer_concentration', 'initiator_concentration',
-                    'Temperature (C)', 'Residence Time (min)', 'Conversion %', 'Chain Transfer Agent', 'Monomer']
+                    'Temperature (°C)', 'Residence Time (min)', 'Conversion %', 'Chain Transfer Agent', 'Monomer']
 
     context = {
 
@@ -389,7 +389,7 @@ def get_axis_data(list_data):
     x, y, z, cx_ratio, CTA = get_axis(list_data)
 
     data = {
-        "Temperature (c)": x,
+        "Temperature (°C)": x,
         "Residence Time (min)": y,
         "Conversion %": z,
         "Chain Transfer Agent": CTA,
@@ -402,13 +402,18 @@ def get_axis_data(list_data):
 def plot_2d_kinetic_graph(name):
     all_data = get_all_rate_data()
     data_subset = all_data.loc[all_data['monomer_name'] == name]
-    data_subset['temperature (c)'] = pandas.to_numeric(
+    data_subset['Temperature (°C)'] = pandas.to_numeric(
         data_subset['temperature'])
-    data_subset['rate(s^-1)'] = pandas.to_numeric(data_subset['rate(s^-1)'])
+    data_subset['Rate(1/s)'] = pandas.to_numeric(data_subset['rate(s^-1)'])
 
     scatter_plot = px.scatter(data_subset,
-                              x='temperature (c)', y='rate(s^-1)', color='cta_name', symbol='cta_concentration', trendline='ols', trendline_scope='overall')
+                              x='Temperature (°C)', y='Rate(1/s)', color='cta_name', symbol='cta_concentration', trendline='ols', trendline_scope='overall')
+    scatter_plot.update_traces(marker=dict(size=12))
     results = px.get_trendline_results(scatter_plot)
+    scatter_plot.update_layout(
+        font=dict(
+            size=20,
+        ))
     results = results.iloc[0]["px_fit_results"].summary()
     plot_html_output = scatter_plot.to_html()
 
@@ -418,20 +423,27 @@ def plot_2d_kinetic_graph(name):
 def plot_3d_kinetic_graph(name):
     all_data = get_all_rate_data()
     data_subset = all_data.loc[all_data['monomer_name'] == name]
-    data_subset['temperature (c)'] = pandas.to_numeric(
+    data_subset['Temperature (°C)'] = pandas.to_numeric(
         data_subset['temperature'])
-    data_subset['rate(s^-1)'] = pandas.to_numeric(data_subset['rate(s^-1)'])
+    data_subset['Rate(1/s)'] = pandas.to_numeric(data_subset['rate(s^-1)'])
 
-    fig = px.scatter_3d(data_subset, x='temperature (c)',
-                        y='rate(s^-1)', z='cta_concentration', color="cta_name")
+    fig = px.scatter_3d(data_subset, x='Temperature (°C)',
+                        y='Rate(1/s)', z='cta_concentration', color="cta_name")
     fig.update_traces(marker=dict(size=5),
                       selector=dict(mode='markers'))
+    fig.update_layout(
+        font=dict(
+            size=10,
+        )
+    )
     return fig.to_html()
 
 
 def plot_3d_graph(df):
 
-    fig = px.scatter_3d(df, x='Temperature (c)',
+    df = clean_data_frame(df)
+
+    fig = px.scatter_3d(df, x='Temperature (°C)',
                         y='Residence Time (min)', z='Conversion %', color="Chain Transfer Agent", symbol="CTA concentration (M)")
     fig.update_traces(marker=dict(size=5),
                       selector=dict(mode='markers'))
@@ -446,7 +458,7 @@ def view_3d_graph(request, name):
     df = pandas.DataFrame(data)
 
     axis = [
-        "Temperature (c)",
+        "Temperature (°C)",
         "Residence Time (min)",
         "Conversion %"
 
