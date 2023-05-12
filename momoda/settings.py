@@ -93,17 +93,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'momoda.wsgi.application'
+
+
 DATABASES = {
     'default': {
         'ENGINE': os.getenv("ENGINE"),
         'NAME': os.getenv("NAME"),
-        'USER': os.getenv("MY_USERNAME"),
+        'USER': os.getenv("USER"),
         'PASSWORD': os.getenv("PASSWORD"),
         'HOST': os.getenv("HOST"),
         'PORT': os.getenv("PORT"),
 
     }}
-
+print(os.getenv("USER"))
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

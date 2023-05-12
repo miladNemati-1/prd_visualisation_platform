@@ -6,7 +6,7 @@ from users.views import home_page, my_account, research_group, create_group, get
 from chemicals.views import search_chemicals, add_chemical, chemical_details
 from experiments.views import add_experiment, my_experiments, my_chemicals, my_equipment, add_equipment, add_supplier, experiment_detail
 from measurements.views import monomer_kinetics, upload_file, delete_file, view_3d_graph, view_graph, view_3d_kinetic_graph, monomer_models, all_visualisations
-
+from iupac.views import iupac_charts
 urlpatterns = [
     path('', home_page, name='home'),
     path('admin/', admin.site.urls),
@@ -40,7 +40,8 @@ urlpatterns = [
     path('measurements/monomer_models/',
          monomer_models, name='monomer_models'),
     path('measurements/all_visualisations/',
-         all_visualisations, name='all_visualisations')
+         all_visualisations, name='all_visualisations'),
+    path('iupac/charts', iupac_charts, name='iupac_charts')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
