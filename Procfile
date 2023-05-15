@@ -1,0 +1,1 @@
+web gunicorn momoda.wsgi:application --log-file -

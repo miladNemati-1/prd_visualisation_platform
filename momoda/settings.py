@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import pytz
 import datetime
+
 from django.utils import timezone
 import pymysql
 from pathlib import Path
+import django_heroku
+import dj_database_url
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -35,7 +38,7 @@ SECRET_KEY = 'django-insecure-#^^xx&y*(*i5y_@)6+%4p-9%8-7$@%h%8u+o%^tqpf(1w28_m)
 # SECURITY WARNING: don't run with debug turned on in production!dsad
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,19 +96,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'momoda.wsgi.application'
-
-
 DATABASES = {
     'default': {
         'ENGINE': os.getenv("ENGINE"),
         'NAME': os.getenv("NAME"),
-        'USER': os.getenv("USER"),
+        'USER': os.getenv("MY_USERNAME"),
         'PASSWORD': os.getenv("PASSWORD"),
         'HOST': os.getenv("HOST"),
         'PORT': os.getenv("PORT"),
 
     }}
-print(os.getenv("USER"))
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -140,6 +141,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+django_heroku.settings(locals())
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]

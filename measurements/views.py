@@ -187,6 +187,7 @@ def all_visualisations(request):
 
     three_d_graph = px.scatter_3d(df, x,
                                   y, z, color, symbol)
+    three_d_graph.update_traces(marker=dict(size=3))
     three_d_graph = three_d_graph.to_html()
 
     column_names = ['cta_concentration', 'monomer_concentration', 'initiator_concentration',
