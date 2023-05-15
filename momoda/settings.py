@@ -98,12 +98,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'momoda.wsgi.application'
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("ENGINE"),
-        'NAME': os.getenv("NAME"),
-        'USER': os.getenv("MY_USERNAME"),
-        'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': os.getenv("HOST"),
-        'PORT': os.getenv("PORT"),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'u528062626_momoda',
+        'USER': 'u528062626_momoda',
+        'PASSWORD': 'Vr7&h;Q^e',
+        'HOST': 'sql992.main-hosting.eu',
+        'PORT': 3306,
 
     }}
 
