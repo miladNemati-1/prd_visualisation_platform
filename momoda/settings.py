@@ -15,7 +15,7 @@ import datetime
 from django.utils import timezone
 import pymysql
 from pathlib import Path
-import django_heroku
+import django_on_heroku
 import dj_database_url
 import os
 from dotenv import load_dotenv
@@ -143,7 +143,7 @@ USE_TZ = False
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
